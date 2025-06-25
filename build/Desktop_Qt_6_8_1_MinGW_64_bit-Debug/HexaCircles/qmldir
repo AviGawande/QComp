@@ -1,0 +1,6 @@
+module HexaCircles
+typeinfo appHexaCircles.qmltypes
+prefer :/qt/qml/HexaCircles/
+Main 1.0 Main.qml
+HexaComp 1.0 HexaComp.qml
+

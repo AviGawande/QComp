@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/HexaCircles/">
+    <file alias="Main.qml">D:/projects/qtcreator/HexaCircles/Main.qml</file>
+    <file alias="HexaComp.qml">D:/projects/qtcreator/HexaCircles/HexaComp.qml</file>
+  </qresource>
+</RCC>
+

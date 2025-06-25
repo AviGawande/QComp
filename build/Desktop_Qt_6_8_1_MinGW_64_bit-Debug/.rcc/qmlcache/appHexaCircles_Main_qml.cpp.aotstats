@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 27,
+                        "durationMicroseconds": 230,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 14
+                    }
+                ],
+                "filepath": "D:/projects/qtcreator/HexaCircles/Main.qml"
+            }
+        ],
+        "moduleId": "HexaCircles(appHexaCircles)"
+    }
+]

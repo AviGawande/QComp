@@ -1,0 +1,13 @@
+--bare
+-I
+D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug
+-I
+C:/Qt/6.8.1/mingw_64/qml
+--resource
+D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qmake_HexaCircles.qrc
+--resource
+D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/appHexaCircles_raw_qml_0.qrc
+D:/projects/qtcreator/HexaCircles/Main.qml
+D:/projects/qtcreator/HexaCircles/HexaComp.qml
+--json
+D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/appHexaCircles_qmllint.json
