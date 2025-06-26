@@ -47,7 +47,7 @@ cmake_ninja_workdir = D$:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_
 #############################################
 # Order-only phony target for appHexaCircles
 
-build cmake_object_order_depends_target_appHexaCircles: phony || .qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp .qt/rcc/qrc_qmake_HexaCircles.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_qmlcache_loader.cpp HexaCircles/appHexaCircles.qmltypes appHexaCircles_autogen appHexaCircles_autogen/mocs_compilation.cpp appHexaCircles_autogen/timestamp appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling apphexacircles_qmltyperegistrations.cpp meta_types/appHexaCircles_json_file_list.txt meta_types/appHexaCircles_json_file_list.txt.timestamp meta_types/qt6apphexacircles_debug_metatypes.json meta_types/qt6apphexacircles_debug_metatypes.json.gen
+build cmake_object_order_depends_target_appHexaCircles: phony || .qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp .qt/rcc/qrc_qmake_HexaCircles.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_qmlcache_loader.cpp HexaCircles/appHexaCircles.qmltypes appHexaCircles_autogen appHexaCircles_autogen/mocs_compilation.cpp appHexaCircles_autogen/timestamp appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling apphexacircles_qmltyperegistrations.cpp meta_types/appHexaCircles_json_file_list.txt meta_types/appHexaCircles_json_file_list.txt.timestamp meta_types/qt6apphexacircles_debug_metatypes.json meta_types/qt6apphexacircles_debug_metatypes.json.gen
 
 build CMakeFiles/appHexaCircles.dir/appHexaCircles_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__appHexaCircles_unscanned_Debug D$:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/appHexaCircles_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_appHexaCircles
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_QMLINTEGRATION_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
@@ -105,6 +105,14 @@ build CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.r
   OBJECT_DIR = CMakeFiles\appHexaCircles.dir
   OBJECT_FILE_DIR = CMakeFiles\appHexaCircles.dir\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.rcc\qmlcache
 
+build CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.obj: CXX_COMPILER__appHexaCircles_unscanned_Debug D$:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp || cmake_object_order_depends_target_appHexaCircles
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_QMLINTEGRATION_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\appHexaCircles.dir\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.rcc\qmlcache\appHexaCircles_SafetyPass_qml.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -ID:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/appHexaCircles_autogen/include -ID:/projects/qtcreator/HexaCircles -isystem C:/Qt/6.8.1/mingw_64/include/QtQml/6.8.1 -isystem C:/Qt/6.8.1/mingw_64/include/QtQml/6.8.1/QtQml -isystem C:/Qt/6.8.1/mingw_64/include/QtCore/6.8.1 -isystem C:/Qt/6.8.1/mingw_64/include/QtCore/6.8.1/QtCore -isystem C:/Qt/6.8.1/mingw_64/include/QtCore -isystem C:/Qt/6.8.1/mingw_64/include -isystem C:/Qt/6.8.1/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.8.1/mingw_64/include/QtQml -isystem C:/Qt/6.8.1/mingw_64/include/QtQmlIntegration -isystem C:/Qt/6.8.1/mingw_64/include/QtNetwork -isystem C:/Qt/6.8.1/mingw_64/include/QtQuick -isystem C:/Qt/6.8.1/mingw_64/include/QtGui -isystem C:/Qt/6.8.1/mingw_64/include/QtQmlMeta -isystem C:/Qt/6.8.1/mingw_64/include/QtQmlModels -isystem C:/Qt/6.8.1/mingw_64/include/QtQmlWorkerScript -isystem C:/Qt/6.8.1/mingw_64/include/QtOpenGL
+  OBJECT_DIR = CMakeFiles\appHexaCircles.dir
+  OBJECT_FILE_DIR = CMakeFiles\appHexaCircles.dir\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.rcc\qmlcache
+
 build CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp.obj: CXX_COMPILER__appHexaCircles_unscanned_Debug D$:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp || cmake_object_order_depends_target_appHexaCircles
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_OPENGL_LIB -DQT_QMLINTEGRATION_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QUICK_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\appHexaCircles.dir\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\rcc\qrc_appHexaCircles_raw_qml_0.cpp.obj.d
@@ -121,7 +129,7 @@ build CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.q
 #############################################
 # Link the executable appHexaCircles.exe
 
-build appHexaCircles.exe: CXX_EXECUTABLE_LINKER__appHexaCircles_Debug CMakeFiles/appHexaCircles.dir/appHexaCircles_autogen/mocs_compilation.cpp.obj CMakeFiles/appHexaCircles.dir/main.cpp.obj CMakeFiles/appHexaCircles.dir/apphexacircles_qmltyperegistrations.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_qmake_HexaCircles.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_qmlcache_loader.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_Main_qml.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp.obj | C$:/Qt/6.8.1/mingw_64/lib/libQt6Quick.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlMeta.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlWorkerScript.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlModels.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Qml.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Network.a C$:/Qt/6.8.1/mingw_64/lib/libQt6OpenGL.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.8.1/mingw_64/lib/libQt6EntryPoint.a || appHexaCircles_autogen appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling
+build appHexaCircles.exe: CXX_EXECUTABLE_LINKER__appHexaCircles_Debug CMakeFiles/appHexaCircles.dir/appHexaCircles_autogen/mocs_compilation.cpp.obj CMakeFiles/appHexaCircles.dir/main.cpp.obj CMakeFiles/appHexaCircles.dir/apphexacircles_qmltyperegistrations.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_qmake_HexaCircles.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_qmlcache_loader.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_Main_qml.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.obj CMakeFiles/appHexaCircles.dir/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp.obj | C$:/Qt/6.8.1/mingw_64/lib/libQt6Quick.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlMeta.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlWorkerScript.a C$:/Qt/6.8.1/mingw_64/lib/libQt6QmlModels.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Qml.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Network.a C$:/Qt/6.8.1/mingw_64/lib/libQt6OpenGL.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.8.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.8.1/mingw_64/lib/libQt6EntryPoint.a || appHexaCircles_autogen appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.8.1/mingw_64/lib/libQt6Quick.a  C:/Qt/6.8.1/mingw_64/lib/libQt6QmlMeta.a  C:/Qt/6.8.1/mingw_64/lib/libQt6QmlWorkerScript.a  C:/Qt/6.8.1/mingw_64/lib/libQt6QmlModels.a  C:/Qt/6.8.1/mingw_64/lib/libQt6Qml.a  C:/Qt/6.8.1/mingw_64/lib/libQt6Network.a  -lws2_32  C:/Qt/6.8.1/mingw_64/lib/libQt6OpenGL.a  C:/Qt/6.8.1/mingw_64/lib/libQt6Gui.a  C:/Qt/6.8.1/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.8.1/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -luser32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -184,19 +192,19 @@ build all_qmllint_module: phony appHexaCircles_qmllint_module
 #############################################
 # Utility command for appHexaCircles_tooling
 
-build appHexaCircles_tooling: phony HexaCircles/Main.qml HexaCircles/HexaComp.qml
+build appHexaCircles_tooling: phony HexaCircles/Main.qml HexaCircles/HexaComp.qml HexaCircles/SafetyPass.qml
 
 
 #############################################
 # Utility command for module_appHexaCircles_aotstats_target
 
-build module_appHexaCircles_aotstats_target: phony CMakeFiles/module_appHexaCircles_aotstats_target .rcc/qmlcache/module_appHexaCircles.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats apphexacircles_qmltyperegistrations.cpp HexaCircles/appHexaCircles.qmltypes appHexaCircles_qmltyperegistration
+build module_appHexaCircles_aotstats_target: phony CMakeFiles/module_appHexaCircles_aotstats_target .rcc/qmlcache/module_appHexaCircles.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats apphexacircles_qmltyperegistrations.cpp HexaCircles/appHexaCircles.qmltypes appHexaCircles_qmltyperegistration
 
 
 #############################################
 # Utility command for all_aotstats
 
-build all_aotstats: phony CMakeFiles/all_aotstats .rcc/qmlcache/all_aotstats.aotstats .rcc/qmlcache/all_aotstats.txt .rcc/qmlcache/module_appHexaCircles.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats apphexacircles_qmltyperegistrations.cpp HexaCircles/appHexaCircles.qmltypes module_appHexaCircles_aotstats_target
+build all_aotstats: phony CMakeFiles/all_aotstats .rcc/qmlcache/all_aotstats.aotstats .rcc/qmlcache/all_aotstats.txt .rcc/qmlcache/module_appHexaCircles.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_Main_qml.cpp .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats apphexacircles_qmltyperegistrations.cpp HexaCircles/appHexaCircles.qmltypes module_appHexaCircles_aotstats_target
 
 
 #############################################
@@ -338,9 +346,18 @@ build .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp .rcc/qmlcache/appHexaCircles
 
 
 #############################################
+# Custom command for .rcc\qmlcache\appHexaCircles_SafetyPass_qml.cpp
+
+build .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats | ${cmake_ninja_workdir}.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp ${cmake_ninja_workdir}.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmlcachegen.exe D$:/projects/qtcreator/HexaCircles/SafetyPass.qml .qt/rcc/qmake_HexaCircles.qrc .qt/rcc/appHexaCircles_raw_qml_0.qrc HexaCircles/appHexaCircles.qmltypes HexaCircles/qmldir
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E make_directory D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmlcachegen.exe --bare --resource-path /qt/qml/HexaCircles/SafetyPass.qml -I D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug -I C:/Qt/6.8.1/mingw_64/qml -i D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/HexaCircles/qmldir --resource D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qmake_HexaCircles.qrc --resource D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/appHexaCircles_raw_qml_0.qrc --dump-aot-stats --module-id=HexaCircles(appHexaCircles) -o D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp D:/projects/qtcreator/HexaCircles/SafetyPass.qml"
+  DESC = Generating .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp, .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats
+  restat = 1
+
+
+#############################################
 # Custom command for .qt\rcc\qrc_appHexaCircles_raw_qml_0.cpp
 
-build .qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp | ${cmake_ninja_workdir}.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp: CUSTOM_COMMAND D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml .qt/rcc/appHexaCircles_raw_qml_0.qrc C$:/Qt/6.8.1/mingw_64/bin/rcc.exe || appHexaCircles_autogen appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling
+build .qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp | ${cmake_ninja_workdir}.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp: CUSTOM_COMMAND D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml D$:/projects/qtcreator/HexaCircles/SafetyPass.qml .qt/rcc/appHexaCircles_raw_qml_0.qrc C$:/Qt/6.8.1/mingw_64/bin/rcc.exe || appHexaCircles_autogen appHexaCircles_autogen_timestamp_deps appHexaCircles_qmlimportscan appHexaCircles_tooling
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug && C:\Qt\6.8.1\mingw_64\bin\rcc.exe --output D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/qrc_appHexaCircles_raw_qml_0.cpp --name appHexaCircles_raw_qml_0 D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/rcc/appHexaCircles_raw_qml_0.qrc --no-zstd"
   DESC = Running rcc for resource appHexaCircles_raw_qml_0
   restat = 1
@@ -375,21 +392,21 @@ build CMakeFiles/appHexaCircles_qmltyperegistration | ${cmake_ninja_workdir}CMak
 #############################################
 # Custom command for CMakeFiles\appHexaCircles_qmllint
 
-build CMakeFiles/appHexaCircles_qmllint | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml .rcc/qmllint/appHexaCircles.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
+build CMakeFiles/appHexaCircles_qmllint | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml D$:/projects/qtcreator/HexaCircles/SafetyPass.qml .rcc/qmllint/appHexaCircles.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmllint.exe @D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmllint/appHexaCircles.rsp"
 
 
 #############################################
 # Custom command for CMakeFiles\appHexaCircles_qmllint_json
 
-build CMakeFiles/appHexaCircles_qmllint_json | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint_json: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml .rcc/qmllint/appHexaCircles_json.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
+build CMakeFiles/appHexaCircles_qmllint_json | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint_json: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml D$:/projects/qtcreator/HexaCircles/SafetyPass.qml .rcc/qmllint/appHexaCircles_json.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmllint.exe @D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmllint/appHexaCircles_json.rsp"
 
 
 #############################################
 # Custom command for CMakeFiles\appHexaCircles_qmllint_module
 
-build CMakeFiles/appHexaCircles_qmllint_module | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint_module: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml .rcc/qmllint/appHexaCircles_module.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
+build CMakeFiles/appHexaCircles_qmllint_module | ${cmake_ninja_workdir}CMakeFiles/appHexaCircles_qmllint_module: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmllint.exe D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml D$:/projects/qtcreator/HexaCircles/SafetyPass.qml .rcc/qmllint/appHexaCircles_module.rsp || all_qmltyperegistrations appHexaCircles_qmltyperegistration
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmllint.exe @D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmllint/appHexaCircles_module.rsp"
 
 
@@ -412,6 +429,15 @@ build HexaCircles/HexaComp.qml | ${cmake_ninja_workdir}HexaCircles/HexaComp.qml:
 
 
 #############################################
+# Custom command for HexaCircles\SafetyPass.qml
+
+build HexaCircles/SafetyPass.qml | ${cmake_ninja_workdir}HexaCircles/SafetyPass.qml: CUSTOM_COMMAND D$:/projects/qtcreator/HexaCircles/SafetyPass.qml
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles && C:\Qt\Tools\CMake_64\bin\cmake.exe -E copy D:/projects/qtcreator/HexaCircles/SafetyPass.qml D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/HexaCircles/SafetyPass.qml"
+  DESC = Copying SafetyPass.qml to D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/HexaCircles/SafetyPass.qml
+  restat = 1
+
+
+#############################################
 # Phony custom command for CMakeFiles\module_appHexaCircles_aotstats_target
 
 build CMakeFiles/module_appHexaCircles_aotstats_target | ${cmake_ninja_workdir}CMakeFiles/module_appHexaCircles_aotstats_target: phony .rcc/qmlcache/module_appHexaCircles.aotstats || appHexaCircles_qmltyperegistration
@@ -420,7 +446,7 @@ build CMakeFiles/module_appHexaCircles_aotstats_target | ${cmake_ninja_workdir}C
 #############################################
 # Custom command for .rcc\qmlcache\module_appHexaCircles.aotstats
 
-build .rcc/qmlcache/module_appHexaCircles.aotstats | ${cmake_ninja_workdir}.rcc/qmlcache/module_appHexaCircles.aotstats: CUSTOM_COMMAND .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/module_appHexaCircles.aotstatslist || appHexaCircles_qmltyperegistration
+build .rcc/qmlcache/module_appHexaCircles.aotstats | ${cmake_ninja_workdir}.rcc/qmlcache/module_appHexaCircles.aotstats: CUSTOM_COMMAND .rcc/qmlcache/appHexaCircles_Main_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_HexaComp_qml.cpp.aotstats .rcc/qmlcache/appHexaCircles_SafetyPass_qml.cpp.aotstats .rcc/qmlcache/module_appHexaCircles.aotstatslist || appHexaCircles_qmltyperegistration
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmlaotstats.exe aggregate D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/module_appHexaCircles.aotstatslist D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.rcc/qmlcache/module_appHexaCircles.aotstats"
   DESC = Generating .rcc/qmlcache/module_appHexaCircles.aotstats
   restat = 1
@@ -451,7 +477,7 @@ build CMakeFiles/appHexaCircles_qmlimportscan | ${cmake_ninja_workdir}CMakeFiles
 #############################################
 # Custom command for .qt\qml_imports\appHexaCircles_build.cmake
 
-build .qt/qml_imports/appHexaCircles_build.cmake | ${cmake_ninja_workdir}.qt/qml_imports/appHexaCircles_build.cmake: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmlimportscanner.exe .qt/rcc/qmake_HexaCircles.qrc .qt/rcc/appHexaCircles_raw_qml_0.qrc D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml
+build .qt/qml_imports/appHexaCircles_build.cmake | ${cmake_ninja_workdir}.qt/qml_imports/appHexaCircles_build.cmake: CUSTOM_COMMAND C$:/Qt/6.8.1/mingw_64/bin/qmlimportscanner.exe .qt/rcc/qmake_HexaCircles.qrc .qt/rcc/appHexaCircles_raw_qml_0.qrc D$:/projects/qtcreator/HexaCircles/Main.qml D$:/projects/qtcreator/HexaCircles/HexaComp.qml D$:/projects/qtcreator/HexaCircles/SafetyPass.qml
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\projects\qtcreator\HexaCircles && D:\projects\qtcreator\HexaCircles\build\Desktop_Qt_6_8_1_MinGW_64_bit-Debug\.qt\bin\qt_setup_tool_path.bat C:/Qt/6.8.1/mingw_64/bin/qmlimportscanner.exe @D:/projects/qtcreator/HexaCircles/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/.qt/qml_imports/appHexaCircles_build.rsp"
   DESC = Running qmlimportscanner for appHexaCircles
   restat = 1
