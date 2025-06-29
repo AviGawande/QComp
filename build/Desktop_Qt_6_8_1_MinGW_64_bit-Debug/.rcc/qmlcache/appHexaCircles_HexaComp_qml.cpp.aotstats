@@ -6,7 +6,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 28,
-                        "durationMicroseconds": 272,
+                        "durationMicroseconds": 443,
                         "errorMessage": "",
                         "functionName": "centerX",
                         "line": 15
@@ -14,7 +14,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 28,
-                        "durationMicroseconds": 118,
+                        "durationMicroseconds": 191,
                         "errorMessage": "",
                         "functionName": "centerY",
                         "line": 16
@@ -22,7 +22,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 30,
-                        "durationMicroseconds": 295,
+                        "durationMicroseconds": 468,
                         "errorMessage": "",
                         "functionName": "hexRadius",
                         "line": 17
@@ -30,7 +30,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 32,
-                        "durationMicroseconds": 1357,
+                        "durationMicroseconds": 2470,
                         "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
                         "functionName": "circleStates",
                         "line": 20
@@ -54,7 +54,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 20,
-                        "durationMicroseconds": 41,
+                        "durationMicroseconds": 57,
                         "errorMessage": "Cannot access value for name circleRadius",
                         "functionName": "width",
                         "line": 50
@@ -62,7 +62,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 21,
-                        "durationMicroseconds": 19,
+                        "durationMicroseconds": 28,
                         "errorMessage": "Cannot access value for name circleRadius",
                         "functionName": "height",
                         "line": 51
@@ -70,7 +70,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 21,
-                        "durationMicroseconds": 17,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot access value for name circleRadius",
                         "functionName": "radius",
                         "line": 52
@@ -78,7 +78,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 16,
-                        "durationMicroseconds": 19,
+                        "durationMicroseconds": 33,
                         "errorMessage": "Cannot access value for name index",
                         "functionName": "x",
                         "line": 55
@@ -86,7 +86,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 16,
-                        "durationMicroseconds": 18,
+                        "durationMicroseconds": 39,
                         "errorMessage": "Cannot access value for name index",
                         "functionName": "y",
                         "line": 56
@@ -94,7 +94,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 22,
-                        "durationMicroseconds": 23,
+                        "durationMicroseconds": 39,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "opacity",
                         "line": 58
@@ -102,7 +102,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 27,
-                        "durationMicroseconds": 20,
+                        "durationMicroseconds": 38,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "color",
                         "line": 53
@@ -110,7 +110,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 27,
-                        "durationMicroseconds": 18,
+                        "durationMicroseconds": 29,
                         "errorMessage": "Cannot access value for name circleBorderWidth",
                         "functionName": "width",
                         "line": 54
@@ -118,7 +118,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 28,
-                        "durationMicroseconds": 16,
+                        "durationMicroseconds": 30,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "color",
                         "line": 67
@@ -126,7 +126,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 28,
-                        "durationMicroseconds": 23,
+                        "durationMicroseconds": 28,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "color",
                         "line": 71
@@ -134,7 +134,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 23,
-                        "durationMicroseconds": 18,
+                        "durationMicroseconds": 32,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "text",
                         "line": 76
@@ -142,7 +142,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 35,
-                        "durationMicroseconds": 66,
+                        "durationMicroseconds": 111,
                         "errorMessage": "",
                         "functionName": "centerIn",
                         "line": 77
@@ -150,7 +150,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 26,
-                        "durationMicroseconds": 17,
+                        "durationMicroseconds": 36,
                         "errorMessage": "Cannot access value for name circleStates",
                         "functionName": "enabled",
                         "line": 85
@@ -158,7 +158,7 @@
                     {
                         "codegenSuccessfull": false,
                         "column": 28,
-                        "durationMicroseconds": 21,
+                        "durationMicroseconds": 39,
                         "errorMessage": "Cannot access value for name root",
                         "functionName": "onClicked",
                         "line": 86
@@ -166,7 +166,7 @@
                     {
                         "codegenSuccessfull": true,
                         "column": 31,
-                        "durationMicroseconds": 60,
+                        "durationMicroseconds": 119,
                         "errorMessage": "",
                         "functionName": "fill",
                         "line": 84

@@ -3,14 +3,6 @@
         "moduleFiles": [
             {
                 "entries": [
-                    {
-                        "codegenSuccessfull": true,
-                        "column": 23,
-                        "durationMicroseconds": 198,
-                        "errorMessage": "",
-                        "functionName": "fill",
-                        "line": 31
-                    }
                 ],
                 "filepath": "D:/projects/qtcreator/HexaCircles/Main.qml"
             }

@@ -26,6 +26,27 @@ namespace _qt_qml_HexaCircles_SafetyPass_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _qt_qml_HexaCircles_RotateComp_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_HexaCircles_WgLayout_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _qt_qml_HexaCircles_BatteryComp_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -43,6 +64,9 @@ Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/Main.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_Main_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/HexaComp.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_HexaComp_qml::unit);
     resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/SafetyPass.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_SafetyPass_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/RotateComp.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_RotateComp_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/WgLayout.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_WgLayout_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/qt/qml/HexaCircles/BatteryComp.qml"), &QmlCacheGeneratedCode::_qt_qml_HexaCircles_BatteryComp_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

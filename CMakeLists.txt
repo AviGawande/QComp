@@ -19,6 +19,9 @@ qt_add_qml_module(appHexaCircles
         Main.qml
         HexaComp.qml
         SafetyPass.qml
+        QML_FILES RotateComp.qml
+        QML_FILES WgLayout.qml
+        QML_FILES BatteryComp.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

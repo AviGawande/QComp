@@ -3,6 +3,9 @@
     <file alias="Main.qml">D:/projects/qtcreator/HexaCircles/Main.qml</file>
     <file alias="HexaComp.qml">D:/projects/qtcreator/HexaCircles/HexaComp.qml</file>
     <file alias="SafetyPass.qml">D:/projects/qtcreator/HexaCircles/SafetyPass.qml</file>
+    <file alias="RotateComp.qml">D:/projects/qtcreator/HexaCircles/RotateComp.qml</file>
+    <file alias="WgLayout.qml">D:/projects/qtcreator/HexaCircles/WgLayout.qml</file>
+    <file alias="BatteryComp.qml">D:/projects/qtcreator/HexaCircles/BatteryComp.qml</file>
   </qresource>
 </RCC>
 
