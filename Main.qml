@@ -1,20 +1,20 @@
-// import QtQuick 2.15
-// import QtQuick.Window 2.15
+// // import QtQuick 2.15
+// // import QtQuick.Window 2.15
 
-// Window {
-//     id: mainWindow
-//     width: 640
-//     height: 480
-//     visible: true
-//     title: qsTr("Hexagonal Circle Component")
-//     color: "#f0f0f0"
+// // Window {
+// //     id: mainWindow
+// //     width: 640
+// //     height: 480
+// //     visible: true
+// //     title: qsTr("Hexagonal Circle Component")
+// //     color: "#f0f0f0"
 
-//     // HexaComp {
-//     //     id: hexaComp
-//     //     anchors.centerIn: parent
-//     // }
+// //     // HexaComp {
+// //     //     id: hexaComp
+// //     //     anchors.centerIn: parent
+// //     // }
 
-// }
+// // }
 
 
 // import QtQuick 2.15
@@ -27,8 +27,8 @@
 //     visible: true
 //     title: qsTr("Safety Application")
 
-//     SafetyPass {
-//         anchors.fill: parent
+//     TorpedoFired{
+//         anchors.centerIn:parent
 //     }
 // }
 
@@ -38,23 +38,46 @@ import QtQuick.Controls 2.15
 
 ApplicationWindow {
     id: window
-    width: 450
-    height: 650
+    width: 400
+    height: 200
     visible: true
-    title: qsTr("Missile Rotation Control")
+    title: "Torpedo Firing System"
 
-    // Optional: Set minimum size
-    minimumWidth: 400
-    minimumHeight: 600
+    Column {
+        anchors.centerIn: parent
+        spacing: 20
 
-    // Main content
-    // RotateComp {
-    //     anchors.fill: parent
-    //     anchors.margins: 10
-    // }
-    BatteryComp{
+        TorpedoFired {
+            id: torpedoComponent
+            width: 308
+            height: 55
+        }
 
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 10
+
+            Button {
+                text: "Fire Torpedo"
+                onClicked: torpedoComponent.fireTorpedo()
+            }
+
+            Button {
+                text: "Move Target"
+                onClicked: torpedoComponent.moveTarget()
+            }
+
+            Button {
+                text: "Reset"
+                onClicked: torpedoComponent.reset()
+            }
+        }
+
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Status: " + torpedoComponent.status
+            font.pixelSize: 12
+        }
     }
-
 }
 
