@@ -122,3 +122,71 @@ Item {
         }
     }
 }
+
+
+
+/*
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+
+Column {
+    width: 300
+    spacing: 10
+
+    // Selection state
+    property int selectedMode: 0  // 0 = Manual, 1 = Automatic
+
+    Row {
+        spacing: 20
+
+        RadioButton {
+            id: manualBtn
+            text: "Manual Selection"
+            checked: true
+            onClicked: selectedMode = 0
+        }
+
+        RadioButton {
+            id: autoBtn
+            text: "Automatic Selection"
+            onClicked: selectedMode = 1
+        }
+    }
+
+    // Dynamic content switcher
+    StackLayout {
+        id: contentStack
+        width: parent.width
+        height: 100
+        currentIndex: selectedMode
+
+        // Manual Selection UI
+        Rectangle {
+            color: "#2e2e2e"
+            radius: 4
+            anchors.fill: parent
+
+            Text {
+                anchors.centerIn: parent
+                text: "Manual Settings"
+                color: "white"
+            }
+        }
+
+        // Automatic Selection UI
+        Rectangle {
+            color: "#1e1e1e"
+            radius: 4
+            anchors.fill: parent
+
+            Text {
+                anchors.centerIn: parent
+                text: "Automatic Settings"
+                color: "white"
+            }
+        }
+    }
+}
+
+*/
