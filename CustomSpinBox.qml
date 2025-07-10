@@ -190,3 +190,80 @@ Column {
 }
 
 */
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+
+Column {
+    width: 400
+    spacing: 10
+
+    property int selectedMode: 0  // 0 = Manual, 1 = Automatic
+
+    Row {
+        spacing: 20
+
+        RadioButton {
+            text: "Manual Selection"
+            checked: true
+            onClicked: selectedMode = 0
+        }
+
+        RadioButton {
+            text: "Automatic Selection"
+            onClicked: selectedMode = 1
+        }
+    }
+
+    Rectangle {
+        id: contentBox
+        width: parent.width
+        height: selectedMode === 0 ? 550 : 250
+        color: "#222"
+        radius: 8
+        border.color: "gray"
+
+        StackLayout {
+            id: stack
+            anchors.fill: parent
+            currentIndex: selectedMode
+
+            // Manual View (taller)
+            Column {
+                spacing: 10
+                padding: 10
+
+                Text { text: "Manual Field 1"; color: "white" }
+                TextField { placeholderText: "Enter Value 1" }
+
+                Text { text: "Manual Field 2"; color: "white" }
+                TextField { placeholderText: "Enter Value 2" }
+
+                Text { text: "Manual Field 3"; color: "white" }
+                TextField { placeholderText: "Enter Value 3" }
+
+                Rectangle {
+                    width: 100; height: 40
+                    color: "white"
+                    Text {
+                        anchors.centerIn: parent
+                        text: "Your CustomSpinBox here"
+                    }
+                }
+            }
+
+            // Automatic View (shorter)
+            Column {
+                spacing: 10
+                padding: 10
+
+                Text { text: "Auto Field"; color: "white" }
+                ComboBox {
+                    model: ["Option A", "Option B"]
+                }
+            }
+        }
+    }
+}
+
