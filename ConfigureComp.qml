@@ -54,6 +54,42 @@ Rectangle {
         anchors.margins: 10
         spacing: 0
 
+        Rectangle {
+            id: header
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            color: "transparent"
+
+            Text {
+                id: titleText
+                text: "WEAPON CONFIGURE"
+                font.pixelSize: 20
+                font.bold: true
+                color: "white"
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            Text {
+                id: closeButton
+                text: "✕"
+                font.pixelSize: 16
+                color: "white"
+                anchors.right: parent.right
+                anchors.rightMargin: 20
+                anchors.verticalCenter: parent.verticalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+                    anchors.margins: -5
+                    onClicked: {
+                        console.log("Close button clicked")
+                    }
+                }
+            }
+        }
+
         // Custom tab bar
         Item {
             id: customTabBar
@@ -89,178 +125,202 @@ Rectangle {
             }
         }
 
-        // Dynamic content area
+        // Dynamic content area with Loader
         Rectangle {
             id: contentArea
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.minimumHeight: 350  // Ensure minimum height
+            Layout.minimumHeight: 350
             color: "transparent"
             Layout.topMargin: 10
 
-            ScrollView {
+            Loader {
+                id: contentLoader
                 anchors.fill: parent
                 anchors.margins: 10
-                clip: true  // Enable clipping for proper scrolling
 
-                ColumnLayout {
-                    width: contentArea.width - 20
-                    height: Math.max(contentArea.height - 20, implicitHeight)  // Ensure consistent height
-                    spacing: 15
+                // Load content when tab changes
+                source: {
+                    var currentTab = customTabBar.tabNames[customTabBar.currentIndex]
+                    return "qrc:/TabContent.qml"  // You can create separate QML files for each tab if needed
+                }
 
-                    Text {
-                        text: customTabBar.tabNames[customTabBar.currentIndex] + " Configuration"
-                        font.pixelSize: 16
-                        font.bold: true
-                        color: "#7FFF00"
-                        Layout.fillWidth: true
+                // Alternative: Use sourceComponent for inline components
+                sourceComponent: tabContentComponent
+
+                onLoaded: {
+                    console.log("Loaded content for tab:", customTabBar.tabNames[customTabBar.currentIndex])
+                }
+
+                onStatusChanged: {
+                    if (status === Loader.Null) {
+                        console.log("Unloaded previous tab content")
                     }
+                }
+            }
+        }
+    }
 
-                    Repeater {
-                        model: {
-                            var currentTab = customTabBar.tabNames[customTabBar.currentIndex]
-                            var data = weaponData[currentTab]
-                            return Object.keys(data || {})
-                        }
+    // Component definition for tab content
+    Component {
+        id: tabContentComponent
 
-                        Item {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 60
+        ScrollView {
+            id: scrollView
+            clip: true
 
-                            Rectangle {
+            property string currentTabName: customTabBar.tabNames[customTabBar.currentIndex]
+            property var currentTabData: weaponData[currentTabName] || {}
+
+            ColumnLayout {
+                width: scrollView.width
+                height: Math.max(scrollView.height, implicitHeight)
+                spacing: 15
+
+                Text {
+                    text: scrollView.currentTabName + " Configuration"
+                    font.pixelSize: 16
+                    font.bold: true
+                    color: "#7FFF00"
+                    Layout.fillWidth: true
+                }
+
+                Repeater {
+                    model: Object.keys(scrollView.currentTabData)
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 60
+
+                        Rectangle {
+                            anchors.fill: parent
+                            color: "#22FFFFFF"
+                            radius: 5
+                            border.color: "#44FFFFFF"
+                            border.width: 1
+
+                            RowLayout {
                                 anchors.fill: parent
-                                color: "#22FFFFFF"
-                                radius: 5
-                                border.color: "#44FFFFFF"
-                                border.width: 1
+                                anchors.margins: 10
+                                spacing: 10
 
-                                RowLayout {
-                                    anchors.fill: parent
-                                    anchors.margins: 10
-                                    spacing: 10
+                                Text {
+                                    text: modelData
+                                    color: "white"
+                                    font.pixelSize: 14
+                                    Layout.preferredWidth: 120
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
 
-                                    Text {
-                                        text: modelData
+                                SpinBox {
+                                    id: spinBox
+                                    Layout.fillWidth: true
+                                    Layout.preferredHeight: 35
+
+                                    property var currentData: scrollView.currentTabData[modelData] || {}
+
+                                    from: (currentData.min || 0) * 100
+                                    to: (currentData.max || 100) * 100
+                                    stepSize: (currentData.step || 1) * 100
+                                    value: (currentData.value || 0) * 100
+
+                                    validator: DoubleValidator {
+                                        bottom: spinBox.from / 100
+                                        top: spinBox.to / 100
+                                        decimals: 2
+                                    }
+
+                                    textFromValue: function(value, locale) {
+                                        return Number(value / 100).toFixed(2)
+                                    }
+
+                                    valueFromText: function(text, locale) {
+                                        return Number.fromLocaleString(locale, text) * 100
+                                    }
+
+                                    onValueChanged: {
+                                        // Update the weapon data when value changes
+                                        var currentTab = scrollView.currentTabName
+                                        if (weaponData[currentTab] && weaponData[currentTab][modelData]) {
+                                            weaponData[currentTab][modelData].value = value / 100
+                                            console.log("Updated", currentTab, modelData, "to", value / 100)
+                                        }
+                                    }
+
+                                    background: Rectangle {
+                                        color: "#33FFFFFF"
+                                        border.color: spinBox.activeFocus ? "#7FFF00" : "#66FFFFFF"
+                                        border.width: 2
+                                        radius: 3
+                                    }
+
+                                    contentItem: TextInput {
+                                        text: spinBox.textFromValue(spinBox.value, spinBox.locale)
+                                        font: spinBox.font
                                         color: "white"
-                                        font.pixelSize: 14
-                                        Layout.preferredWidth: 120
-                                        Layout.alignment: Qt.AlignVCenter
+                                        selectionColor: "#7FFF00"
+                                        selectedTextColor: "black"
+                                        horizontalAlignment: Qt.AlignHCenter
+                                        verticalAlignment: Qt.AlignVCenter
+                                        readOnly: !spinBox.editable
+                                        validator: spinBox.validator
+                                        inputMethodHints: Qt.ImhFormattedNumbersOnly
                                     }
 
-                                    SpinBox {
-                                        id: spinBox
-                                        Layout.fillWidth: true
-                                        Layout.preferredHeight: 35
+                                    up.indicator: Rectangle {
+                                        x: spinBox.mirrored ? 0 : parent.width - width
+                                        height: parent.height / 2
+                                        implicitWidth: 20
+                                        color: spinBox.up.pressed ? "#7FFF00" : "#44FFFFFF"
+                                        border.color: "#66FFFFFF"
+                                        radius: 2
 
-                                        property var currentData: {
-                                            var currentTab = customTabBar.tabNames[customTabBar.currentIndex]
-                                            return weaponData[currentTab][modelData] || {}
-                                        }
-
-                                        from: (currentData.min || 0) * 100
-                                        to: (currentData.max || 100) * 100
-                                        stepSize: (currentData.step || 1) * 100
-                                        value: (currentData.value || 0) * 100
-
-                                        validator: DoubleValidator {
-                                            bottom: spinBox.from / 100
-                                            top: spinBox.to / 100
-                                            decimals: 2
-                                        }
-
-                                        textFromValue: function(value, locale) {
-                                            return Number(value / 100).toFixed(2)
-                                        }
-
-                                        valueFromText: function(text, locale) {
-                                            return Number.fromLocaleString(locale, text) * 100
-                                        }
-
-                                        onValueChanged: {
-                                            // Update the weapon data when value changes
-                                            var currentTab = customTabBar.tabNames[customTabBar.currentIndex]
-                                            if (weaponData[currentTab] && weaponData[currentTab][modelData]) {
-                                                weaponData[currentTab][modelData].value = value / 100
-                                                console.log("Updated", currentTab, modelData, "to", value / 100)
-                                            }
-                                        }
-
-                                        background: Rectangle {
-                                            color: "#33FFFFFF"
-                                            border.color: spinBox.activeFocus ? "#7FFF00" : "#66FFFFFF"
-                                            border.width: 2
-                                            radius: 3
-                                        }
-
-                                        contentItem: TextInput {
-                                            text: spinBox.textFromValue(spinBox.value, spinBox.locale)
-                                            font: spinBox.font
+                                        Text {
+                                            text: "▲"
+                                            font.pixelSize: 8
                                             color: "white"
-                                            selectionColor: "#7FFF00"
-                                            selectedTextColor: "black"
-                                            horizontalAlignment: Qt.AlignHCenter
-                                            verticalAlignment: Qt.AlignVCenter
-                                            readOnly: !spinBox.editable
-                                            validator: spinBox.validator
-                                            inputMethodHints: Qt.ImhFormattedNumbersOnly
-                                        }
-
-                                        up.indicator: Rectangle {
-                                            x: spinBox.mirrored ? 0 : parent.width - width
-                                            height: parent.height / 2
-                                            implicitWidth: 20
-                                            color: spinBox.up.pressed ? "#7FFF00" : "#44FFFFFF"
-                                            border.color: "#66FFFFFF"
-                                            radius: 2
-
-                                            Text {
-                                                text: "▲"
-                                                font.pixelSize: 8
-                                                color: "white"
-                                                anchors.centerIn: parent
-                                            }
-                                        }
-
-                                        down.indicator: Rectangle {
-                                            x: spinBox.mirrored ? 0 : parent.width - width
-                                            y: parent.height / 2
-                                            height: parent.height / 2
-                                            implicitWidth: 20
-                                            color: spinBox.down.pressed ? "#7FFF00" : "#44FFFFFF"
-                                            border.color: "#66FFFFFF"
-                                            radius: 2
-
-                                            Text {
-                                                text: "▼"
-                                                font.pixelSize: 8
-                                                color: "white"
-                                                anchors.centerIn: parent
-                                            }
+                                            anchors.centerIn: parent
                                         }
                                     }
 
-                                    Text {
-                                        text: {
-                                            var currentTab = customTabBar.tabNames[customTabBar.currentIndex]
-                                            var data = weaponData[currentTab][modelData]
-                                            return "(" + (data?.min || 0) + "-" + (data?.max || 100) + ")"
+                                    down.indicator: Rectangle {
+                                        x: spinBox.mirrored ? 0 : parent.width - width
+                                        y: parent.height / 2
+                                        height: parent.height / 2
+                                        implicitWidth: 20
+                                        color: spinBox.down.pressed ? "#7FFF00" : "#44FFFFFF"
+                                        border.color: "#66FFFFFF"
+                                        radius: 2
+
+                                        Text {
+                                            text: "▼"
+                                            font.pixelSize: 8
+                                            color: "white"
+                                            anchors.centerIn: parent
                                         }
-                                        color: "#AAAAAA"
-                                        font.pixelSize: 10
-                                        Layout.preferredWidth: 60
-                                        Layout.alignment: Qt.AlignVCenter
                                     }
+                                }
+
+                                Text {
+                                    text: {
+                                        var data = scrollView.currentTabData[modelData]
+                                        return "(" + (data?.min || 0) + "-" + (data?.max || 100) + ")"
+                                    }
+                                    color: "#AAAAAA"
+                                    font.pixelSize: 10
+                                    Layout.preferredWidth: 60
+                                    Layout.alignment: Qt.AlignVCenter
                                 }
                             }
                         }
                     }
+                }
 
-                    // Spacer item to fill remaining space and maintain consistent height
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 20
-                    }
+                // Spacer item to fill remaining space and maintain consistent height
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.minimumHeight: 20
                 }
             }
         }
