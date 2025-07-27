@@ -54,42 +54,6 @@ Rectangle {
         anchors.margins: 10
         spacing: 0
 
-        Rectangle {
-            id: header
-            Layout.fillWidth: true
-            Layout.preferredHeight: 50
-            color: "transparent"
-
-            Text {
-                id: titleText
-                text: "WEAPON CONFIGURE"
-                font.pixelSize: 20
-                font.bold: true
-                color: "white"
-                anchors.left: parent.left
-                anchors.leftMargin: 20
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            Text {
-                id: closeButton
-                text: "✕"
-                font.pixelSize: 16
-                color: "white"
-                anchors.right: parent.right
-                anchors.rightMargin: 20
-                anchors.verticalCenter: parent.verticalCenter
-
-                MouseArea {
-                    anchors.fill: parent
-                    anchors.margins: -5
-                    onClicked: {
-                        console.log("Close button clicked")
-                    }
-                }
-            }
-        }
-
         // Custom tab bar
         Item {
             id: customTabBar
