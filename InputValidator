@@ -1,383 +1,984 @@
-// ValidatedTextField.qml
+// CustomTextField.qml
+// import QtQuick 2.15
+// import QtQuick.Controls 2.15
+
+// TextField {
+//     id: root
+
+//     // Validation properties
+//     property int validationType: 0  // 0: alphanumeric, 1: numeric, 2: custom
+//     property int minLength: 0
+//     property int maxLength: 100
+//     property real minValue: 0
+//     property real maxValue: 999999
+//     property int decimalPlaces: 0
+//     property bool allowAlphabetic: true
+//     property bool allowNumeric: true
+//     property bool allowSpecialChars: false
+//     property string customRegex: ""
+//     property string validationMessage: ""
+
+//     // Visual feedback properties
+//     property color validColor: "#4CAF50"
+//     property color invalidColor: "#F44336"
+//     property color normalBorderColor: "#CCCCCC"
+
+//     // Internal properties
+//     property bool isValid: true
+//     property string errorMessage: ""
+
+//     // Styling
+//     selectByMouse: true
+
+//     background: Rectangle {
+//         color: "white"
+//         border.color: root.activeFocus ? (root.isValid ? root.validColor : root.invalidColor) : root.normalBorderColor
+//         border.width: root.activeFocus ? 2 : 1
+//         radius: 4
+
+//         Behavior on border.color {
+//             ColorAnimation { duration: 150 }
+//         }
+//     }
+
+//     // Validation function
+//     function validateInput(inputText) {
+//         if (!inputText) inputText = text
+
+//         var valid = true
+//         var message = ""
+
+//         switch(validationType) {
+//             case 0: // Alphanumeric validation
+//                 valid = validateAlphanumeric(inputText)
+//                 break
+//             case 1: // Numeric validation
+//                 valid = validateNumeric(inputText)
+//                 break
+//             case 2: // Custom regex validation
+//                 valid = validateCustom(inputText)
+//                 break
+//         }
+
+//         isValid = valid
+//         errorMessage = message
+//         return valid
+//     }
+
+//     function validateAlphanumeric(inputText) {
+//         // Check length
+//         if (inputText.length < minLength) {
+//             errorMessage = "Minimum " + minLength + " characters required"
+//             return false
+//         }
+//         if (inputText.length > maxLength) {
+//             errorMessage = "Maximum " + maxLength + " characters allowed"
+//             return false
+//         }
+
+//         // Check character types
+//         var regex = ""
+//         if (allowAlphabetic && allowNumeric) {
+//             regex = "^[a-zA-Z0-9"
+//         } else if (allowAlphabetic) {
+//             regex = "^[a-zA-Z"
+//         } else if (allowNumeric) {
+//             regex = "^[0-9"
+//         }
+
+//         if (allowSpecialChars) {
+//             regex += "\\s\\-_"  // Allow space, hyphen, underscore
+//         }
+
+//         regex += "]+$"
+
+//         var regExp = new RegExp(regex)
+//         if (!regExp.test(inputText)) {
+//             var allowedTypes = []
+//             if (allowAlphabetic) allowedTypes.push("letters")
+//             if (allowNumeric) allowedTypes.push("numbers")
+//             if (allowSpecialChars) allowedTypes.push("spaces, hyphens, underscores")
+
+//             errorMessage = "Only " + allowedTypes.join(", ") + " allowed"
+//             return false
+//         }
+
+//         errorMessage = ""
+//         return true
+//     }
+
+//     function validateNumeric(inputText) {
+//         // Check if it's a valid number
+//         var numValue = parseFloat(inputText)
+//         if (isNaN(numValue) && inputText !== "") {
+//             errorMessage = "Please enter a valid number"
+//             return false
+//         }
+
+//         if (inputText === "") {
+//             if (minLength > 0) {
+//                 errorMessage = "This field is required"
+//                 return false
+//             }
+//             errorMessage = ""
+//             return true
+//         }
+
+//         // Check range
+//         if (numValue < minValue) {
+//             errorMessage = "Minimum value is " + minValue
+//             return false
+//         }
+//         if (numValue > maxValue) {
+//             errorMessage = "Maximum value is " + maxValue
+//             return false
+//         }
+
+//         // Check decimal places
+//         if (decimalPlaces === 0 && inputText.indexOf('.') !== -1) {
+//             errorMessage = "Decimal numbers not allowed"
+//             return false
+//         }
+
+//         if (decimalPlaces > 0) {
+//             var decimalIndex = inputText.indexOf('.')
+//             if (decimalIndex !== -1) {
+//                 var decimals = inputText.substring(decimalIndex + 1)
+//                 if (decimals.length > decimalPlaces) {
+//                     errorMessage = "Maximum " + decimalPlaces + " decimal places allowed"
+//                     return false
+//                 }
+//             }
+//         }
+
+//         errorMessage = ""
+//         return true
+//     }
+
+//     function validateCustom(inputText) {
+//         if (customRegex === "") return true
+
+//         var regExp = new RegExp(customRegex)
+//         var valid = regExp.test(inputText)
+
+//         if (!valid) {
+//             errorMessage = validationMessage || "Invalid input format"
+//         } else {
+//             errorMessage = ""
+//         }
+
+//         return valid
+//     }
+
+//     // Input filtering for numeric fields
+//     validator: {
+//         if (validationType === 1) {
+//             if (decimalPlaces > 0) {
+//                 return doubleValidator
+//             } else {
+//                 return intValidator
+//             }
+//         }
+//         return null
+//     }
+
+//     IntValidator {
+//         id: intValidator
+//         bottom: minValue
+//         top: maxValue
+//     }
+
+//     DoubleValidator {
+//         id: doubleValidator
+//         bottom: minValue
+//         top: maxValue
+//         decimals: decimalPlaces
+//     }
+
+//     // Real-time validation
+//     onTextChanged: {
+//         validateInput()
+//     }
+
+//     // Validation on focus loss
+//     onActiveFocusChanged: {
+//         if (!activeFocus) {
+//             validateInput()
+//         }
+//     }
+
+//     // Public method to check validation
+//     function isInputValid() {
+//         return validateInput()
+//     }
+
+//     // Method to get validation error
+//     function getValidationError() {
+//         return errorMessage
+//     }
+
+//     // Method to clear validation
+//     function clearValidation() {
+//         isValid = true
+//         errorMessage = ""
+//     }
+// }
+
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-Rectangle {
+TextField {
     id: root
 
-    property string labelText: ""
-    property string placeholderText: ""
-    property string text: textField.text
-    property string dataType: "string"           // string, int, float, double, bool
-    property var validationRules: ["required"]   // Array of rules
-    property var validator: null                 // Validator instance
+    // Validation properties
+    property int validationType: 0  // 0: alphanumeric, 1: numeric, 2: custom, 3: password
+    property int minLength: 0
+    property int maxLength: 100
+    property real minValue: 0
+    property real maxValue: 999999
+    property int decimalPlaces: 0
+    property bool allowAlphabetic: true
+    property bool allowNumeric: true
+    property bool allowSpecialChars: false
+    property string customRegex: ""
+    property string validationMessage: ""
+
+    // Password properties
+    property bool isPassword: false
+    property string confirmPassword: ""
+    property bool isPasswordConfirmation: false
+
+    // Visual feedback properties
+    property color validColor: "#4CAF50"
+    property color invalidColor: "#F44336"
+    property color normalBorderColor: "#CCCCCC"
+
+    // Internal properties
     property bool isValid: true
     property string errorMessage: ""
 
-    width: 300
-    height: column.height + 20
-    color: "#FFFFFF"
-    border.color: isValid ? "#CCCCCC" : "#FF6B6B"
-    border.width: 2
-    radius: 8
+    // Styling
+    selectByMouse: true
+    echoMode: isPassword || isPasswordConfirmation ? TextInput.Password : TextInput.Normal
 
-    Column {
-        id: column
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.margins: 10
-        spacing: 5
+    background: Rectangle {
+        color: "white"
+        border.color: root.activeFocus ? (root.isValid ? root.validColor : root.invalidColor) : root.normalBorderColor
+        border.width: root.activeFocus ? 2 : 1
+        radius: 4
 
-        Text {
-            text: labelText + (validationRules.includes("required") ? " *" : "")
-            color: "#666666"
-            font.pixelSize: 14
-            font.weight: Font.Medium
-            visible: labelText !== ""
-        }
-
-        TextField {
-            id: textField
-            width: parent.width
-            placeholderText: root.placeholderText
-            color: "#333333"
-            font.pixelSize: 16
-            background: Rectangle {
-                color: "transparent"
-            }
-
-            onActiveFocusChanged: {
-                if (!activeFocus) {
-                    performValidation()
-                }
-            }
-        }
-
-        Text {
-            text: errorMessage
-            color: "#FF6B6B"
-            font.pixelSize: 12
-            visible: !isValid && errorMessage !== ""
-            wrapMode: Text.WordWrap
-            width: parent.width
+        Behavior on border.color {
+            ColorAnimation { duration: 150 }
         }
     }
 
-    function performValidation() {
-        if (!validator) {
-            console.warn("No validator provided")
+    // Set maximum length directly for string/alphanumeric/password fields
+    maximumLength: (validationType === 0 || validationType === 2 || validationType === 3) ? maxLength : 32767
+
+    // Input filter to prevent invalid input
+    inputMethodHints: {
+        if (validationType === 1) {
+            if (decimalPlaces > 0) {
+                return Qt.ImhFormattedNumbersOnly
+            } else {
+                return Qt.ImhDigitsOnly
+            }
+        }
+        return Qt.ImhNone
+    }
+
+    // Custom input filter for numeric validation
+    onTextEdited: {
+        if (validationType === 1) {
+            var newText = text
+            var numValue = parseFloat(newText)
+
+            // Check if the value exceeds maximum
+            if (!isNaN(numValue) && numValue > maxValue) {
+                // Revert to previous valid value
+                text = previousValidText
+                return
+            }
+
+            // Check decimal places
+            if (decimalPlaces === 0 && newText.indexOf('.') !== -1) {
+                text = previousValidText
+                return
+            }
+
+            if (decimalPlaces > 0 && newText.indexOf('.') !== -1) {
+                var decimalIndex = newText.indexOf('.')
+                var decimals = newText.substring(decimalIndex + 1)
+                if (decimals.length > decimalPlaces) {
+                    text = previousValidText
+                    return
+                }
+            }
+
+            // Store valid text for next comparison
+            previousValidText = newText
+        }
+    }
+
+    // Store previous valid text for numeric fields
+    property string previousValidText: ""
+
+    // Validation function
+    function validateInput(inputText) {
+        if (!inputText) inputText = text
+
+        var valid = true
+        var message = ""
+
+        switch(validationType) {
+            case 0: // Alphanumeric validation
+                valid = validateAlphanumeric(inputText)
+                break
+            case 1: // Numeric validation
+                valid = validateNumeric(inputText)
+                break
+            case 2: // Custom regex validation
+                valid = validateCustom(inputText)
+                break
+            case 3: // Password validation
+                valid = validatePassword(inputText)
+                break
+        }
+
+        isValid = valid
+        errorMessage = message
+        return valid
+    }
+
+    function validateAlphanumeric(inputText) {
+        // Check length
+        if (inputText.length < minLength) {
+            errorMessage = "Minimum " + minLength + " characters required"
+            return false
+        }
+        if (inputText.length > maxLength) {
+            errorMessage = "Maximum " + maxLength + " characters allowed"
+            return false
+        }
+
+        // Check character types
+        var regex = ""
+        if (allowAlphabetic && allowNumeric) {
+            regex = "^[a-zA-Z0-9"
+        } else if (allowAlphabetic) {
+            regex = "^[a-zA-Z"
+        } else if (allowNumeric) {
+            regex = "^[0-9"
+        }
+
+        if (allowSpecialChars) {
+            regex += "\\s\\-_"  // Allow space, hyphen, underscore
+        }
+
+        regex += "]+$"
+
+        var regExp = new RegExp(regex)
+        if (!regExp.test(inputText)) {
+            var allowedTypes = []
+            if (allowAlphabetic) allowedTypes.push("letters")
+            if (allowNumeric) allowedTypes.push("numbers")
+            if (allowSpecialChars) allowedTypes.push("spaces, hyphens, underscores")
+
+            errorMessage = "Only " + allowedTypes.join(", ") + " allowed"
+            return false
+        }
+
+        errorMessage = ""
+        return true
+    }
+
+    function validateNumeric(inputText) {
+        // Check if it's a valid number
+        var numValue = parseFloat(inputText)
+        if (isNaN(numValue) && inputText !== "") {
+            errorMessage = "Please enter a valid number"
+            return false
+        }
+
+        if (inputText === "") {
+            if (minLength > 0) {
+                errorMessage = "This field is required"
+                return false
+            }
+            errorMessage = ""
             return true
         }
 
-        var result = validator.validate(textField.text, dataType, validationRules)
-        isValid = result.isValid
-        errorMessage = result.errorMessage
+        // Check range
+        if (numValue < minValue) {
+            errorMessage = "Minimum value is " + minValue
+            return false
+        }
+        if (numValue > maxValue) {
+            errorMessage = "Maximum value is " + maxValue
+            return false
+        }
 
-        return result.isValid
+        // Check decimal places
+        if (decimalPlaces === 0 && inputText.indexOf('.') !== -1) {
+            errorMessage = "Decimal numbers not allowed"
+            return false
+        }
+
+        if (decimalPlaces > 0) {
+            var decimalIndex = inputText.indexOf('.')
+            if (decimalIndex !== -1) {
+                var decimals = inputText.substring(decimalIndex + 1)
+                if (decimals.length > decimalPlaces) {
+                    errorMessage = "Maximum " + decimalPlaces + " decimal places allowed"
+                    return false
+                }
+            }
+        }
+
+        errorMessage = ""
+        return true
     }
 
-    function validate() {
-        return performValidation()
+    function validateCustom(inputText) {
+        if (customRegex === "") return true
+
+        var regExp = new RegExp(customRegex)
+        var valid = regExp.test(inputText)
+
+        if (!valid) {
+            errorMessage = validationMessage || "Invalid input format"
+        } else {
+            errorMessage = ""
+        }
+
+        return valid
     }
 
-    function clear() {
-        textField.text = ""
+    function validatePassword(inputText) {
+        // Check length
+        if (inputText.length < minLength) {
+            errorMessage = "Password must be at least " + minLength + " characters"
+            return false
+        }
+        if (inputText.length > maxLength) {
+            errorMessage = "Password cannot exceed " + maxLength + " characters"
+            return false
+        }
+
+        // For password confirmation field
+        if (isPasswordConfirmation) {
+            if (inputText !== confirmPassword) {
+                errorMessage = "Passwords do not match"
+                return false
+            }
+        }
+
+        // Basic password strength requirements (you can customize these)
+        if (minLength > 0) {
+            var hasUpper = /[A-Z]/.test(inputText)
+            var hasLower = /[a-z]/.test(inputText)
+            var hasNumber = /\d/.test(inputText)
+            var hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(inputText)
+
+            if (!hasUpper || !hasLower || !hasNumber || !hasSpecial) {
+                errorMessage = "Password must contain uppercase, lowercase, number, and special character"
+                return false
+            }
+        }
+
+        errorMessage = ""
+        return true
+    }
+
+    // Input filtering for numeric fields
+    validator: {
+        if (validationType === 1) {
+            if (decimalPlaces > 0) {
+                return doubleValidator
+            } else {
+                return intValidator
+            }
+        }
+        return null
+    }
+
+    IntValidator {
+        id: intValidator
+        bottom: minValue
+        top: maxValue
+    }
+
+    DoubleValidator {
+        id: doubleValidator
+        bottom: minValue
+        top: maxValue
+        decimals: decimalPlaces
+    }
+
+    // Initialize previous valid text
+    Component.onCompleted: {
+        if (validationType === 1) {
+            previousValidText = text
+        }
+    }
+
+    // Real-time validation
+    onTextChanged: {
+        validateInput()
+    }
+
+    // Validation on focus loss
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            validateInput()
+        }
+    }
+
+    // Public method to check validation
+    function isInputValid() {
+        return validateInput()
+    }
+
+    // Method to get validation error
+    function getValidationError() {
+        return errorMessage
+    }
+
+    // Method to clear validation
+    function clearValidation() {
         isValid = true
         errorMessage = ""
     }
-
-    function getValue() {
-        switch(dataType) {
-        case "int":
-            return parseInt(textField.text)
-        case "float":
-        case "double":
-            return parseFloat(textField.text)
-        case "bool":
-            return textField.text === "true" || textField.text === "1"
-        default:
-            return textField.text
-        }
-    }
 }
 
-// Validators.qml
-import QtQuick 2.15
 
-QtObject {
 
-    // Data Type Validation
-    function validateString(input) {
-        return typeof input === "string"
-    }
 
-    function validateInt(input) {
-        var num = parseInt(input)
-        return !isNaN(num) && num.toString() === input.toString() && /^-?\d+$/.test(input)
-    }
+/// ValidatedForm.qml
+// import QtQuick 2.15
+// import QtQuick.Controls 2.15
+// import QtQuick.Layouts 1.15
 
-    function validateFloat(input) {
-        var num = parseFloat(input)
-        return !isNaN(num) && /^-?\d+(\.\d+)?$/.test(input)
-    }
+// Item {
+//     width: 600
+//     height: 600
 
-    function validateDouble(input) {
-        return validateFloat(input) // Same as float in JavaScript
-    }
+//     ScrollView {
+//         anchors.fill: parent
+//         anchors.margins: 20
 
-    function validateBool(input) {
-        return input === true || input === false ||
-               input === "true" || input === "false" ||
-               input === "1" || input === "0"
-    }
+//         ColumnLayout {
+//             width: parent.width
+//             spacing: 20
 
-    // Content Validation
-    function validateRequired(input) {
-        return input !== null && input !== undefined && input.toString().trim().length > 0
-    }
+//             // Example 1: Alphanumeric string (1-15 characters)
+//             GroupBox {
+//                 title: "Machine Name (Alphanumeric, 1-15 chars)"
+//                 Layout.fillWidth: true
 
-    function validateText(input) {
-        return /^[a-zA-Z\s]*$/.test(input)
-    }
+//                 ColumnLayout {
+//                     anchors.fill: parent
 
-    function validateAlphaNumeric(input) {
-        return /^[a-zA-Z0-9\s]*$/.test(input)
-    }
+//                     CustomTextField {
+//                         id: machineName
+//                         Layout.fillWidth: true
+//                         placeholderText: "Enter machine name"
 
-    function validatePhone(input) {
-        return /^[\+]?[0-9\-\(\)\s]{10,15}$/.test(input)
-    }
+//                         // Configure for alphanumeric validation
+//                         validationType: 0  // alphanumeric
+//                         minLength: 1
+//                         maxLength: 15
+//                         allowAlphabetic: true
+//                         allowNumeric: true
+//                         allowSpecialChars: false
+//                     }
 
-    function validateMinLength(input, minLength) {
-        return input.toString().length >= minLength
-    }
+//                     Text {
+//                         text: machineName.errorMessage
+//                         color: "red"
+//                         visible: !machineName.isValid && machineName.errorMessage !== ""
+//                         font.pixelSize: 12
+//                     }
+//                 }
+//             }
 
-    function validateMaxLength(input, maxLength) {
-        return input.toString().length <= maxLength
-    }
+//             // Example 2: Integer validation (0-99)
+//             GroupBox {
+//                 title: "Integer Field (0-99)"
+//                 Layout.fillWidth: true
 
-    function validateRange(input, min, max) {
-        var num = parseFloat(input)
-        return !isNaN(num) && num >= min && num <= max
-    }
+//                 ColumnLayout {
+//                     anchors.fill: parent
 
-    // Main validation function
-    function validate(input, dataType, rules) {
-        var result = {
-            isValid: true,
-            errorMessage: ""
-        }
+//                     CustomTextField {
+//                         id: integerField
+//                         Layout.fillWidth: true
+//                         placeholderText: "Enter integer (e.g., 25)"
 
-        // Check data type first
-        switch(dataType) {
-        case "string":
-            if (!validateString(input)) {
-                result.isValid = false
-                result.errorMessage = "Must be a valid string"
-                return result
-            }
-            break
-        case "int":
-            if (!validateInt(input)) {
-                result.isValid = false
-                result.errorMessage = "Must be a valid integer"
-                return result
-            }
-            break
-        case "float":
-            if (!validateFloat(input)) {
-                result.isValid = false
-                result.errorMessage = "Must be a valid decimal number"
-                return result
-            }
-            break
-        case "double":
-            if (!validateDouble(input)) {
-                result.isValid = false
-                result.errorMessage = "Must be a valid number"
-                return result
-            }
-            break
-        case "bool":
-            if (!validateBool(input)) {
-                result.isValid = false
-                result.errorMessage = "Must be true or false"
-                return result
-            }
-            break
-        }
+//                         // Configure for integer validation
+//                         validationType: 1  // numeric
+//                         minValue: 0
+//                         maxValue: 99
+//                         decimalPlaces: 0  // Integer - no decimals allowed
+//                     }
 
-        // Check validation rules
-        for (var i = 0; i < rules.length; i++) {
-            var rule = rules[i]
+//                     Text {
+//                         text: integerField.errorMessage
+//                         color: "red"
+//                         visible: !integerField.isValid && integerField.errorMessage !== ""
+//                         font.pixelSize: 12
+//                     }
+//                 }
+//             }
 
-            if (rule === "required") {
-                if (!validateRequired(input)) {
-                    result.isValid = false
-                    result.errorMessage = "This field is required"
-                    return result
-                }
-            }
-            else if (rule === "text") {
-                if (!validateText(input)) {
-                    result.isValid = false
-                    result.errorMessage = "Only letters and spaces are allowed"
-                    return result
-                }
-            }
-            else if (rule === "alphanumeric") {
-                if (!validateAlphaNumeric(input)) {
-                    result.isValid = false
-                    result.errorMessage = "Only letters, numbers and spaces are allowed"
-                    return result
-                }
-            }
-            else if (rule === "email") {
-                if (!validateEmail(input)) {
-                    result.isValid = false
-                    result.errorMessage = "Please enter a valid email address"
-                    return result
-                }
-            }
-            else if (rule === "phone") {
-                if (!validatePhone(input)) {
-                    result.isValid = false
-                    result.errorMessage = "Please enter a valid phone number"
-                    return result
-                }
-            }
-            else if (rule.startsWith("minLength:")) {
-                var minLen = parseInt(rule.split(":")[1])
-                if (!validateMinLength(input, minLen)) {
-                    result.isValid = false
-                    result.errorMessage = "Minimum " + minLen + " characters required"
-                    return result
-                }
-            }
-            else if (rule.startsWith("maxLength:")) {
-                var maxLen = parseInt(rule.split(":")[1])
-                if (!validateMaxLength(input, maxLen)) {
-                    result.isValid = false
-                    result.errorMessage = "Maximum " + maxLen + " characters allowed"
-                    return result
-                }
-            }
-            else if (rule.startsWith("range:")) {
-                var rangeParts = rule.split(":")[1].split("-")
-                var min = parseFloat(rangeParts[0])
-                var max = parseFloat(rangeParts[1])
-                if (!validateRange(input, min, max)) {
-                    result.isValid = false
-                    result.errorMessage = "Value must be between " + min + " and " + max
-                    return result
-                }
-            }
-        }
+//             // Example 3: Float validation (0.0-999.99)
+//             GroupBox {
+//                 title: "Float Field (0.0-999.99)"
+//                 Layout.fillWidth: true
 
-        return result
-    }
-}
+//                 ColumnLayout {
+//                     anchors.fill: parent
 
-// Form.qml
+//                     CustomTextField {
+//                         id: floatField
+//                         Layout.fillWidth: true
+//                         placeholderText: "Enter float (e.g., 123.45)"
+
+//                         // Configure for float validation (2 decimal places)
+//                         validationType: 1  // numeric
+//                         minValue: 0.0
+//                         maxValue: 999.99
+//                         decimalPlaces: 2  // Float - up to 2 decimal places
+//                     }
+
+//                     Text {
+//                         text: floatField.errorMessage
+//                         color: "red"
+//                         visible: !floatField.isValid && floatField.errorMessage !== ""
+//                         font.pixelSize: 12
+//                     }
+//                 }
+//             }
+
+//             // Example 4: Double validation (0.0-999999.999999)
+//             GroupBox {
+//                 title: "Double Field (0.0-999999.999999)"
+//                 Layout.fillWidth: true
+
+//                 ColumnLayout {
+//                     anchors.fill: parent
+
+//                     CustomTextField {
+//                         id: doubleField
+//                         Layout.fillWidth: true
+//                         placeholderText: "Enter double (e.g., 12345.123456)"
+
+//                         // Configure for double validation (6 decimal places)
+//                         validationType: 1  // numeric
+//                         minValue: 0.0
+//                         maxValue: 999999.999999
+//                         decimalPlaces: 6  // Double - up to 6 decimal places
+//                     }
+
+//                     Text {
+//                         text: doubleField.errorMessage
+//                         color: "red"
+//                         visible: !doubleField.isValid && doubleField.errorMessage !== ""
+//                         font.pixelSize: 12
+//                     }
+//                 }
+//             }
+
+//             // Example 5: Email validation using custom regex
+//             GroupBox {
+//                 title: "Email (Custom Regex)"
+//                 Layout.fillWidth: true
+
+//                 ColumnLayout {
+//                     anchors.fill: parent
+
+//                     CustomTextField {
+//                         id: emailField
+//                         Layout.fillWidth: true
+//                         placeholderText: "Enter email address"
+
+//                         // Configure for email validation
+//                         validationType: 2  // custom
+//                         customRegex: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+//                         validationMessage: "Please enter a valid email address"
+//                     }
+
+//                     Text {
+//                         text: emailField.errorMessage
+//                         color: "red"
+//                         visible: !emailField.isValid && emailField.errorMessage !== ""
+//                         font.pixelSize: 12
+//                     }
+//                 }
+//             }
+//             // Submit button
+//             Button {
+//                 text: "Submit"
+//                 Layout.alignment: Qt.AlignHCenter
+//                 enabled: machineName.isValid && integerField.isValid &&
+//                         floatField.isValid && doubleField.isValid && emailField.isValid
+
+//                 onClicked: {
+//                     console.log("Form submitted successfully!")
+//                     console.log("Machine Name:", machineName.text)
+//                     console.log("Integer:", integerField.text)
+//                     console.log("Float:", floatField.text)
+//                     console.log("Double:", doubleField.text)
+//                     console.log("Email:", emailField.text)
+//                 }
+//             }
+//         }
+//     }
+// }
+
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
-ScrollView {
-    id: root
+Item {
+    width: 600
+    height: 800
 
-    // Create validator instance
-    Validators {
-        id: validators
-    }
+    ScrollView {
+        anchors.fill: parent
+        anchors.margins: 20
 
-    Column {
-        width: root.width - 40
-        anchors.horizontalCenter: parent.horizontalCenter
-        spacing: 20
-        topPadding: 20
-
-        ValidatedTextField {
-            id: nameField
+        ColumnLayout {
             width: parent.width
-            labelText: "Full Name"
-            dataType: "string"
-            validationRules: ["required", "text"]
-            validator: validators
-        }
-
-        ValidatedTextField {
-            id: ageField
-            width: parent.width
-            labelText: "Age"
-            dataType: "int"
-            validationRules: ["required", "range:1-120"]
-            validator: validators
-        }
-
-        ValidatedTextField {
-            id: gradeField
-            width: parent.width
-            labelText: "Grade"
-            dataType: "float"
-            validationRules: ["required", "range:0-100"]
-            validator: validators
-        }
-
-        ValidatedTextField {
-            id: cityField
-            width: parent.width
-            labelText: "City"
-            dataType: "string"
-            validationRules: ["required", "text", "minLength:2"]
-            validator: validators
-        }
-
-        Row {
-            anchors.horizontalCenter: parent.horizontalCenter
             spacing: 20
 
-            Button {
-                text: "Submit"
-                background: Rectangle {
-                    color: "#4ECDC4"
-                    radius: 6
-                }
-                contentItem: Text {
-                    text: parent.text
-                    color: "white"
-                    font.pixelSize: 16
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
+            // Example 1: Alphanumeric string (1-15 characters)
+            GroupBox {
+                title: "Machine Name (Alphanumeric, 1-15 chars)"
+                Layout.fillWidth: true
 
-                onClicked: {
-                    var allValid = nameField.validate() &&
-                                 ageField.validate() &&
-                                 gradeField.validate() &&
-                                 cityField.validate()
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: machineName
+                        Layout.fillWidth: true
+                        placeholderText: "Enter machine name"
+
+                        // Configure for alphanumeric validation
+                        validationType: 0  // alphanumeric
+                        minLength: 1
+                        maxLength: 15
+                        allowAlphabetic: true
+                        allowNumeric: true
+                        allowSpecialChars: false
+                    }
+
+                    Text {
+                        text: machineName.errorMessage
+                        color: "red"
+                        visible: !machineName.isValid && machineName.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
                 }
             }
 
+            // Example 2: Integer validation (0-99)
+            GroupBox {
+                title: "Integer Field (0-99)"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: integerField
+                        Layout.fillWidth: true
+                        placeholderText: "Enter integer (e.g., 25)"
+
+                        // Configure for integer validation
+                        validationType: 1  // numeric
+                        minValue: 0
+                        maxValue: 99
+                        decimalPlaces: 0  // Integer - no decimals allowed
+                    }
+
+                    Text {
+                        text: integerField.errorMessage
+                        color: "red"
+                        visible: !integerField.isValid && integerField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Example 3: Float validation (0.0-999.99)
+            GroupBox {
+                title: "Float Field (0.0-999.99)"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: floatField
+                        Layout.fillWidth: true
+                        placeholderText: "Enter float (e.g., 123.45)"
+
+                        // Configure for float validation (2 decimal places)
+                        validationType: 1  // numeric
+                        minValue: 0.0
+                        maxValue: 999.99
+                        decimalPlaces: 2  // Float - up to 2 decimal places
+                    }
+
+                    Text {
+                        text: floatField.errorMessage
+                        color: "red"
+                        visible: !floatField.isValid && floatField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Example 4: Double validation (0.0-999999.999999)
+            GroupBox {
+                title: "Double Field (0.0-999999.999999)"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: doubleField
+                        Layout.fillWidth: true
+                        placeholderText: "Enter double (e.g., 12345.123456)"
+
+                        // Configure for double validation (6 decimal places)
+                        validationType: 1  // numeric
+                        minValue: 0.0
+                        maxValue: 999999.999999
+                        decimalPlaces: 6  // Double - up to 6 decimal places
+                    }
+
+                    Text {
+                        text: doubleField.errorMessage
+                        color: "red"
+                        visible: !doubleField.isValid && doubleField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Example 5: Email validation using custom regex
+            GroupBox {
+                title: "Email (Custom Regex)"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: emailField
+                        Layout.fillWidth: true
+                        placeholderText: "Enter email address"
+
+                        // Configure for email validation
+                        validationType: 2  // custom
+                        customRegex: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+                        validationMessage: "Please enter a valid email address"
+                    }
+
+                    Text {
+                        text: emailField.errorMessage
+                        color: "red"
+                        visible: !emailField.isValid && emailField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Example 6: Password field
+            GroupBox {
+                title: "Password (8-20 chars, must include uppercase, lowercase, number, special char)"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: passwordField
+                        Layout.fillWidth: true
+                        placeholderText: "Enter password"
+
+                        // Configure for password validation
+                        validationType: 3  // password
+                        isPassword: true
+                        minLength: 8
+                        maxLength: 20
+                    }
+
+                    Text {
+                        text: passwordField.errorMessage
+                        color: "red"
+                        visible: !passwordField.isValid && passwordField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Example 7: Password confirmation field
+            GroupBox {
+                title: "Confirm Password"
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    anchors.fill: parent
+
+                    CustomTextField {
+                        id: confirmPasswordField
+                        Layout.fillWidth: true
+                        placeholderText: "Re-enter password"
+
+                        // Configure for password confirmation validation
+                        validationType: 3  // password
+                        isPasswordConfirmation: true
+                        confirmPassword: passwordField.text
+                        minLength: 8
+                        maxLength: 20
+
+                        // Update validation when the original password changes
+                        onConfirmPasswordChanged: {
+                            validateInput()
+                        }
+                    }
+
+                    Text {
+                        text: confirmPasswordField.errorMessage
+                        color: "red"
+                        visible: !confirmPasswordField.isValid && confirmPasswordField.errorMessage !== ""
+                        font.pixelSize: 12
+                    }
+                }
+            }
+
+            // Submit button
             Button {
-                text: "Clear"
-                background: Rectangle {
-                    color: "#FF6B6B"
-                    radius: 6
-                }
-                contentItem: Text {
-                    text: parent.text
-                    color: "white"
-                    font.pixelSize: 16
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
+                text: "Submit"
+                Layout.alignment: Qt.AlignHCenter
+                enabled: machineName.isValid && integerField.isValid &&
+                        floatField.isValid && doubleField.isValid && emailField.isValid &&
+                        passwordField.isValid && confirmPasswordField.isValid
 
                 onClicked: {
-                    nameField.clear()
-                    ageField.clear()
-                    gradeField.clear()
-                    cityField.clear()
+                    console.log("Form submitted successfully!")
+                    console.log("Machine Name:", machineName.text)
+                    console.log("Integer:", integerField.text)
+                    console.log("Float:", floatField.text)
+                    console.log("Double:", doubleField.text)
+                    console.log("Email:", emailField.text)
+                    console.log("Password: [HIDDEN]")
                 }
             }
         }
