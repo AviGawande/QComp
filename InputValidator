@@ -1,3 +1,19 @@
+ShipDetailsView {
+    anchors.fill: parent
+    anchors.margins: 15
+    shipData: (shipManager && expandedOtherIndex >= 0 && expandedOtherIndex < shipManager.otherShips.length) ?
+             shipManager.otherShips[expandedOtherIndex] : null  // ✅ CORRECT ARRAY + BOUNDS CHECK
+}
+
+
+
+
+
+
+
+
+
+
 // CustomTextField.qml
 import QtQuick 2.15
 import QtQuick.Controls 2.15
