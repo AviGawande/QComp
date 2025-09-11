@@ -36,6 +36,22 @@ Rectangle {
         return Math.max(minimumValue, Math.min(maximumValue, val))
     }
 
+    function validateAndUpdateInput() {
+        var inputText = valueInput.text.trim()
+        var newValue = parseFloat(inputText)
+
+        if (isNaN(newValue) || inputText === "") {
+            // Reset to current value if invalid input
+            valueInput.text = customSpinBox.value.toFixed(customSpinBox.decimals)
+        } else {
+            // Clamp the value and update
+            var clampedValue = customSpinBox.clampValue(newValue)
+            customSpinBox.updateValue(clampedValue)
+            // Always update the text to show the clamped value
+            valueInput.text = clampedValue.toFixed(customSpinBox.decimals)
+        }
+    }
+
     // Watch for external value changes
     onValueChanged: {
         if (!updatingFromCode && !valueInput.activeFocus) {
@@ -65,40 +81,33 @@ Rectangle {
                 notation: DoubleValidator.StandardNotation
             }
 
-            // Remove the onTextChanged handler that was causing issues
-            // and only validate on editing finished
-            onEditingFinished: {
-                var inputText = text.trim()
-                var newValue = parseFloat(inputText)
+            // Validate input on each character change to prevent out-of-range values
+            onTextChanged: {
+                if (!customSpinBox.updatingFromCode && activeFocus) {
+                    var inputText = text.trim()
+                    var testValue = parseFloat(inputText)
 
-                if (isNaN(newValue) || inputText === "") {
-                    // Reset to current value if invalid input
-                    text = customSpinBox.value.toFixed(customSpinBox.decimals)
-                } else {
-                    // Clamp the value and update
-                    var clampedValue = customSpinBox.clampValue(newValue)
-                    customSpinBox.updateValue(clampedValue)
-
-                    // If the value was clamped, update the display immediately
-                    if (clampedValue !== newValue) {
-                        text = clampedValue.toFixed(customSpinBox.decimals)
+                    // Only validate if we have a complete number
+                    if (!isNaN(testValue) && inputText !== "" && inputText !== "-" && inputText !== ".") {
+                        if (testValue > customSpinBox.maximumValue) {
+                            text = customSpinBox.maximumValue.toFixed(customSpinBox.decimals)
+                            cursorPosition = text.length
+                        } else if (testValue < customSpinBox.minimumValue) {
+                            text = customSpinBox.minimumValue.toFixed(customSpinBox.decimals)
+                            cursorPosition = text.length
+                        }
                     }
                 }
+            }
+
+            onEditingFinished: {
+                customSpinBox.validateAndUpdateInput()
             }
 
             // Handle focus loss (when user clicks elsewhere)
             onActiveFocusChanged: {
                 if (!activeFocus) {
-                    var inputText = text.trim()
-                    var newValue = parseFloat(inputText)
-
-                    if (isNaN(newValue) || inputText === "") {
-                        text = customSpinBox.value.toFixed(customSpinBox.decimals)
-                    } else {
-                        var clampedValue = customSpinBox.clampValue(newValue)
-                        customSpinBox.updateValue(clampedValue)
-                        text = clampedValue.toFixed(customSpinBox.decimals)
-                    }
+                    customSpinBox.validateAndUpdateInput()
                 }
             }
 
@@ -113,11 +122,23 @@ Rectangle {
             }
 
             Keys.onReturnPressed: {
-                focus = false // Trigger onActiveFocusChanged
+                customSpinBox.validateAndUpdateInput()
+                focus = false
             }
 
             Keys.onEnterPressed: {
-                focus = false // Trigger onActiveFocusChanged
+                customSpinBox.validateAndUpdateInput()
+                focus = false
+            }
+
+            // Prevent pasting values that are out of range
+            Keys.onPressed: function(event) {
+                if (event.key === Qt.Key_V && (event.modifiers & Qt.ControlModifier)) {
+                    // Let the paste happen first, then validate
+                    Qt.callLater(function() {
+                        customSpinBox.validateAndUpdateInput()
+                    })
+                }
             }
         }
 
