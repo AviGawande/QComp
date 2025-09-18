@@ -7,7 +7,6 @@ Rectangle {
     width: colLayout.implicitWidth
     height: colLayout.implicitHeight
     color: "transparent"
-    visible: true
     border.color: "#1e1e1e"
     border.width: 1
 
@@ -30,11 +29,8 @@ Rectangle {
             }
 
             Rectangle {
-                width: 20
-                height: 20
-                radius: 10
-                border.color: "#3a3a3a"
-                border.width: 1
+                width: 20; height: 20; radius: 10
+                border.color: "#3a3a3a"; border.width: 1
                 color: "transparent"
 
                 Text {
@@ -51,37 +47,28 @@ Rectangle {
             }
         }
 
-        CustomComboBox {
+        ComboBox {
             id: affinityControl
             Layout.fillWidth: true
             Layout.margins: 10
             model: manualTrackData.affinityOptions
-
-            onCurrentIndexChanged: {
-                manualTrackData.setAffinityIndex(currentIndex)
-            }
+            onCurrentIndexChanged: manualTrackData.setAffinityIndex(currentIndex)
         }
 
-        CustomComboBox {
+        ComboBox {
             id: categoryComboBox
             Layout.fillWidth: true
             Layout.margins: 10
             model: manualTrackData.categoryOptions
-
-            onCurrentIndexChanged: {
-                manualTrackData.setCategoryIndex(currentIndex)
-            }
+            onCurrentIndexChanged: manualTrackData.setCategoryIndex(currentIndex)
         }
 
-        CustomComboBox {
+        ComboBox {
             id: typeComboBox
             Layout.fillWidth: true
             Layout.margins: 10
             model: manualTrackData.typeOptions
-
-            onCurrentIndexChanged: {
-                manualTrackData.setTypeIndex(currentIndex)
-            }
+            onCurrentIndexChanged: manualTrackData.setTypeIndex(currentIndex)
         }
     }
 }
